@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRClass | Clases Personalizadas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            overscroll-behavior: none;
+        }
+
+        .hero-bg {
+            background: linear-gradient(160deg, #3b82f6, #1e40af);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .course-hover {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .course-hover:hover {
+            transform: scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navegación -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="text-xl font-bold text-blue-600">JR<span class="text-gray-900">Class</span></div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" class="text-gray-700 hover:bg-blue-100 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
+                        <a href="#courses" class="text-gray-700 hover:bg-blue-100 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Cursos</a>
+                        <a href="#pricing" class="text-gray-700 hover:bg-blue-100 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium">Precios</a>
+                        <a href="https://wa.me/56959414178" class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition">Contacto</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="hamburger flex flex-col space-y-1">
+                        <div class="w-6 h-0.5 bg-gray-800"></div>
+                        <div class="w-6 h-0.5 bg-gray-800"></div>
+                        <div class="w-6 h-0.5 bg-gray-800"></div>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu, hidden by default -->
+            <div class="mobile-menu hidden md:hidden">
+                <div class="py-2 space-y-1">
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700">Inicio</a>
+                    <a href="#courses" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700">Cursos</a>
+                    <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700">Precios</a>
+                    <a href="https://wa.me/56959414178" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-blue-100 hover:text-blue-700">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-bg relative pt-32 pb-48 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white">Clases Personalizadas</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-12 text-white/90">Aprende a tu propio ritmo. ¡Impulsa tu futuro hoy mismo!</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#courses" class="bg-white text-blue-700 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition">Ver Cursos</a>
+                <a href="https://wa.me/56959414178" class="border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-blue-700 transition">Contáctanos</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Resumen Rápido -->
+    <section class="bg-white py-24">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-16 text-gray-900">¿Por Qué Elegir JRClass?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-8 rounded-2xl shadow-lg">
+                    <div class="text-5xl mb-6 text-blue-600">🎓</div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Clases Personalizadas</h3>
+                    <p class="text-gray-700">Adaptamos cada clase a tu ritmo de aprendizaje y necesidades específicas.</p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-2xl shadow-lg">
+                    <div class="text-5xl mb-6 text-blue-600">💻</div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Tecnología Avanzada</h3>
+                    <p class="text-gray-700">Aprende las últimas tecnologías y herramientas que demanda el mercado actual.</p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-2xl shadow-lg">
+                    <div class="text-5xl mb-6 text-blue-600">🚀</div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900">Crecimiento Rápido</h3>
+                    <p class="text-gray-700">Metodologías prácticas que te permiten avanzar rápidamente en tu aprendizaje.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cursos -->
+    <section id="courses" class="bg-gray-100 py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-title text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900">Nuestros Cursos</h2>
+                <p class="mt-4 text-xl text-gray-600">Descubre nuestro catálogo de cursos especializados para potenciar tus habilidades</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Python -->
+                <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-48 bg-blue-100 flex items-center justify-center p-6">
+                        <img src="https://www.python.org/static/community_logos/python-logo-generic.svg" alt="Python Logo" class="h-28 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Python para Principiantes</h3>
+                        <p class="text-gray-600 mb-4">Aprende los fundamentos de Python y crea tus primeras aplicaciones.</p>
+                        <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                    </div>
+                </div>
+                
+                <!-- Ruby -->
+                <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-48 bg-red-100 flex items-center justify-center p-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Ruby_logo.svg" alt="Ruby Logo" class="h-28 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Desarrollo Web con Ruby on Rails</h3>
+                        <p class="text-gray-600 mb-4">Crea aplicaciones web robustas y escalables con Ruby on Rails.</p>
+                        <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                    </div>
+                </div>
+                
+                <!-- R -->
+                <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-48 bg-blue-50 flex items-center justify-center p-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/1200px-R_logo.svg.png" alt="R Logo" class="h-28 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Análisis de Datos con R</h3>
+                        <p class="text-gray-600 mb-4">Domina el análisis estadístico y la visualización de datos con R.</p>
+                        <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                    </div>
+                </div>
+                
+                <!-- Machine Learning -->
+                <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-48 bg-yellow-50 flex items-center justify-center p-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/1200px-Pandas_logo.svg.png" alt="Pandas Logo" class="h-28 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Fundamentos de Machine Learning</h3>
+                        <p class="text-gray-600 mb-4">Explora los principios básicos del aprendizaje automático.</p>
+                        <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                    </div>
+                </div>
+                
+                <!-- Deep Learning -->
+                <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-48 bg-orange-50 flex items-center justify-center p-6">
+                        <img src="https://www.tensorflow.org/images/tf_logo.png" alt="TensorFlow Logo" class="h-28 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Deep Learning con TensorFlow</h3>
+                        <p class="text-gray-600 mb-4">Sumérgete en redes neuronales usando TensorFlow.</p>
+                        <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                    </div>
+                </div>
+                
+                <!-- IA Generativa -->
+                <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-48 bg-purple-50 flex items-center justify-center p-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/NumPy_logo_2020.svg/1200px-NumPy_logo_2020.svg.png" alt="NumPy Logo" class="h-28 object-contain">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">IA Generativa</h3>
+                        <p class="text-gray-600 mb-4">Creación de imágenes, Lenguaje Natural, Prompts.</p>
+                        <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                    </div>
+                </div>
+                
+                <!-- Ver más cursos (botón expandible para mostrar más cursos) -->
+                <div class="md:col-span-2 lg:col-span-3 text-center mt-8">
+                    <button id="show-more-courses" class="bg-white border border-blue-600 text-blue-600 px-8 py-3 rounded-full hover:bg-blue-50 transition">
+                        Ver más cursos
+                    </button>
+                </div>
+                
+                <!-- Cursos adicionales (inicialmente ocultos) -->
+                <div id="more-courses" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 col-span-full">
+                    <!-- Arduino -->
+                    <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="h-48 bg-teal-50 flex items-center justify-center p-6">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Arduino_Logo.svg/1200px-Arduino_Logo.svg.png" alt="Arduino Logo" class="h-28 object-contain">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Arduino para Principiantes</h3>
+                            <p class="text-gray-600 mb-4">Comienza a construir proyectos electrónicos.</p>
+                            <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Cálculo -->
+                    <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="h-48 bg-indigo-50 flex items-center justify-center p-6">
+                            <div class="text-6xl text-indigo-600">∫</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Cálculo I</h3>
+                            <p class="text-gray-600 mb-4">Obtén una base sólida en cálculo diferencial.</p>
+                            <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Looker -->
+                    <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="h-48 bg-green-50 flex items-center justify-center p-6">
+                            <div class="text-6xl text-green-600">📊</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Visualización de datos con Looker</h3>
+                            <p class="text-gray-600 mb-4">Crea dashboards interactivos para análisis de datos.</p>
+                            <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Power BI -->
+                    <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="h-48 bg-yellow-50 flex items-center justify-center p-6">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/New_Power_BI_Logo.svg/2048px-New_Power_BI_Logo.svg.png" alt="Power BI Logo" class="h-28 object-contain">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Power BI</h3>
+                            <p class="text-gray-600 mb-4">Inteligencia empresarial y DAX avanzado.</p>
+                            <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Excel -->
+                    <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="h-48 bg-green-50 flex items-center justify-center p-6">
+                            <div class="text-6xl text-green-600">📈</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Excel</h3>
+                            <p class="text-gray-600 mb-4">Fórmulas avanzadas y tablas dinámicas.</p>
+                            <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                        </div>
+                    </div>
+                    
+                    <!-- AutoCAD -->
+                    <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="h-48 bg-red-50 flex items-center justify-center p-6">
+                            <div class="text-6xl text-red-600">📐</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">AutoCAD</h3>
+                            <p class="text-gray-600 mb-4">Diseño 2D y 3D, dibujos técnicos.</p>
+                            <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                        </div>
+                    </div>
+                    
+                    <!-- MS Project -->
+                    <div class="course-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="h-48 bg-blue-50 flex items-center justify-center p-6">
+                            <div class="text-6xl text-blue-600">📋</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">MS Project</h3>
+                            <p class="text-gray-600 mb-4">Gestión de proyectos y diagramas de Gantt.</p>
+                            <a href="#pricing" class="block text-center bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Precios -->
+    <section id="pricing" class="bg-white py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-title text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900">Nuestros Precios</h2>
+                <p class="mt-4 text-xl text-gray-600">Planes flexibles que se adaptan a tus necesidades</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Plan básico -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200 transition-all hover:shadow-xl">
+                    <div class="p-8 bg-blue-50">
+                        <h3 class="text-2xl font-bold text-gray-900">Básico</h3>
+                        <div class="mt-4 flex items-baseline">
+                            <span class="text-5xl font-extrabold text-blue-600">5.000</span>
+                            <span class="ml-1 text-xl text-gray-600">CLP</span>
+                        </div>
+                        <p class="mt-2 text-gray-600">Por clase</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="ml-3 text-gray-700">Soporte por WhatsApp</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="ml-3 text-gray-700">1 hora de clases prácticas</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8">
+                            <a href="https://wa.me/56959414178" class="block text-center bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition w-full">Empezar</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Plan avanzado -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-blue-500 transform scale-105 md:scale-100 md:hover:scale-105 transition-all z-10">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white px-4 py-1 rounded-bl-lg font-semibold text-sm">Popular</div>
+                    <div class="p-8 bg-blue-100">
+                        <h3 class="text-2xl font-bold text-gray-900">Avanzado</h3>
+                        <div class="mt-4 flex items-baseline">
+                            <span class="text-5xl font-extrabold text-blue-600">10.000</span>
+                            <span class="ml-1 text-xl text-gray-600">CLP</span>
+                        </div>
+                        <p class="mt-2 text-gray-600">Por clase</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="ml-3 text-gray-700">Soporte prioritario por WhatsApp</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="ml-3 text-gray-700">1 hora de clases prácticas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 text-green-500 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="ml-3 text-gray-700">Material teorico en PPT</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8">
+                            <a href="https://wa.me/56959414178" class="block text-center bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition w-full">Empezar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Acerca de Nosotros</h3>
+                    <p class="text-gray-400">Ofrecemos clases personalizadas de programación y matemáticas para estudiantes de todos los niveles.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Cursos</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="footer-link">Python</a></li>
+                        <li><a href="#" class="footer-link">Ruby</a></li>
+                        <li><a href="#" class="footer-link">Análisis de Datos con R</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contacto</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="footer-link">Desarrollo</a></li>
+                        <li><a href="#" class="footer-link">+56959414178</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Síguenos</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center">
+                <p class="text-gray-400">&copy; 2025 JRClass. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <style>
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chatbot-button {
+            background-color: #3b82f6;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.05);
+            background-color: #2563eb;
+        }
+        
+        .chatbot-popup {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 300px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transform-origin: bottom right;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: scale(0.5);
+            pointer-events: none;
+        }
+        
+        .chatbot-popup.open {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: all;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(160deg, #3b82f6, #1e40af);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chatbot-body {
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .chatbot-message {
+            background-color: #f0f7ff;
+            border-left: 3px solid #3b82f6;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .chatbot-options {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .chatbot-option {
+            background-color: #f3f4f6;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .chatbot-option:hover {
+            background-color: #e5e7eb;
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+    
+    <!-- HTML del chatbot -->
+    <div class="chatbot-container">
+        <div id="chatbot-btn" class="chatbot-button pulse-animation">
+            <i class="fas fa-comment"></i>
+        </div>
+        
+        <div id="chatbot-popup" class="chatbot-popup">
+            <div class="chatbot-header">
+                <div>
+                    <h3 class="text-lg font-bold">JRClass Asistente</h3>
+                    <p class="text-sm">Tiempo de respuesta: ~5 min</p>
+                </div>
+                <button id="chatbot-close" class="chatbot-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="chatbot-body">
+                <div class="chatbot-message">
+                    <p>👋 ¡Hola! Soy el asistente virtual de JRClass.</p>
+                    <p class="mt-2">¿En qué puedo ayudarte hoy?</p>
+                    
+                    <div class="chatbot-options">
+                        <div class="chatbot-option" data-question="cursos">
+                            Información sobre cursos
+                        </div>
+                        <div class="chatbot-option" data-question="precio">
+                            Consultar precios
+                        </div>
+                        <div class="chatbot-option" data-question="horario">
+                            Consultar horarios disponibles
+                        </div>
+                        <div class="chatbot-option" data-question="contacto">
+                            Hablar con un profesor
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript del chatbot -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatbotButton = document.getElementById('chatbot-btn');
+            const chatbotPopup = document.getElementById('chatbot-popup');
+            const chatbotClose = document.getElementById('chatbot-close');
+            const chatbotOptions = document.querySelectorAll('.chatbot-option');
+            const chatbotBody = document.querySelector('.chatbot-body');
+            
+            // Número de WhatsApp
+            const whatsappNumber = '56959414178';
+            
+            // Mostrar/ocultar chatbot
+            chatbotButton.addEventListener('click', function() {
+                chatbotPopup.classList.toggle('open');
+                chatbotButton.classList.remove('pulse-animation');
+            });
+            
+            chatbotClose.addEventListener('click', function() {
+                chatbotPopup.classList.remove('open');
+            });
+            
+            // Manejar opciones del chatbot
+            chatbotOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const question = this.getAttribute('data-question');
+                    let response = '';
+                    let whatsappMessage = '';
+                    
+                    // Eliminar opciones existentes
+                    const existingOptions = chatbotBody.querySelector('.chatbot-options');
+                    if (existingOptions) {
+                        existingOptions.remove();
+                    }
+                    
+                    // Agregar mensaje del usuario
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'chatbot-message';
+                    userMessage.style.backgroundColor = '#e6f7ff';
+                    userMessage.style.borderLeft = '3px solid #0284c7';
+                    userMessage.innerHTML = `<p>${this.textContent.trim()}</p>`;
+                    chatbotBody.appendChild(userMessage);
+                    
+                    // Respuestas según la opción
+                    switch(question) {
+                        case 'cursos':
+                            response = `
+                                <p>Ofrecemos una variedad de cursos:</p>
+                                <ul class="list-disc pl-5 mt-2">
+                                    <li>Python para Principiantes</li>
+                                    <li>Desarrollo Web con Ruby on Rails</li>
+                                    <li>Análisis de Datos con R</li>
+                                    <li>Fundamentos de Machine Learning</li>
+                                    <li>Deep Learning con TensorFlow</li>
+                                    <li>Y muchos más...</li>
+                                </ul>
+                                <p class="mt-3">¿Te gustaría obtener más información sobre algún curso específico?</p>
+                            `;
+                            whatsappMessage = 'Hola! Estoy interesado en obtener más información sobre los cursos que ofrecen.';
+                            break;
+                        case 'precio':
+                            response = `
+                                <p>Nuestros precios son:</p>
+                                <ul class="list-disc pl-5 mt-2">
+                                    <li>Plan Básico: 5.000 CLP por clase</li>
+                                    <li>Plan Avanzado: 10.000 CLP por clase</li>
+                                </ul>
+                                <p class="mt-3">¿Te gustaría conocer más detalles sobre los planes?</p>
+                            `;
+                            whatsappMessage = 'Hola! Me gustaría conocer más detalles sobre los precios de las clases.';
+                            break;
+                        case 'horario':
+                            response = `
+                                <p>Nuestros horarios son flexibles y nos adaptamos a tu disponibilidad.</p>
+                                <p class="mt-2">¿En qué horario te gustaría recibir las clases? Contáctanos para coordinar.</p>
+                            `;
+                            whatsappMessage = 'Hola! Me gustaría consultar sobre los horarios disponibles para las clases.';
+                            break;
+                        case 'contacto':
+                            response = `
+                                <p>¡Por supuesto! Puedes hablar directamente con uno de nuestros profesores.</p>
+                                <p class="mt-2">Haz clic en el botón de abajo para contactarnos por WhatsApp.</p>
+                            `;
+                            whatsappMessage = 'Hola! Me gustaría hablar con un profesor sobre las clases.';
+                            break;
+                    }
+                    
+                    // Agregar respuesta del chatbot
+                    setTimeout(() => {
+                        const botMessage = document.createElement('div');
+                        botMessage.className = 'chatbot-message';
+                        botMessage.innerHTML = response;
+                        
+                        // Botón de WhatsApp
+                        const whatsappButton = document.createElement('a');
+                        whatsappButton.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                        whatsappButton.target = '_blank';
+                        whatsappButton.className = 'block text-center bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg mt-4 transition';
+                        whatsappButton.innerHTML = '<i class="fab fa-whatsapp mr-2"></i> Continuar en WhatsApp';
+                        
+                        botMessage.appendChild(whatsappButton);
+                        chatbotBody.appendChild(botMessage);
+                        
+                        // Scroll al fondo
+                        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                    }, 500);
+                });
+            });
+            
+            // Mostrar chatbot automáticamente después de 5 segundos
+            setTimeout(function() {
+                if (!sessionStorage.getItem('chatbotShown')) {
+                    chatbotPopup.classList.add('open');
+                    chatbotButton.classList.remove('pulse-animation');
+                    sessionStorage.setItem('chatbotShown', 'true');
+                }
+            }, 5000);
+        });
+    </script>
+     </body>
+<script>
+    // Menú móvil
+    document.querySelector('.hamburger').addEventListener('click', function() {
+        document.querySelector('.mobile-menu').classList.toggle('hidden');
+    });
+
+    // Botón "Ver más cursos"
+    document.getElementById('show-more-courses').addEventListener('click', function() {
+        const moreCoursesSection = document.getElementById('more-courses');
+        moreCoursesSection.classList.toggle('hidden');
+        const buttonText = this.textContent.trim();
+        this.textContent = buttonText === 'Ver más cursos' ? 'Ver menos cursos' : 'Ver más cursos';
+    });
+</script>
